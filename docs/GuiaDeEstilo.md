@@ -1,7 +1,3 @@
-Aqui está o guia revisado com a especificação das cores:
-
----
-
 # Guia de Estilo
 
 ## Introdução

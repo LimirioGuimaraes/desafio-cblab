@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Merriweather&family=Roboto&display=swap');
+
+
+:root {
+    --primary-color: #6EA105;
+    --secondary-color: #8B4513;
+    --background-color: #FFFFF3; 
+    --action-font: Lato;
+    --title-font: Merriweather;
+    --text-font: Roboto;
+  }
+
+.margin {
+    margin: 0 250px; 
+}
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

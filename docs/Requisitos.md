@@ -2,7 +2,7 @@
 
 ## Introdução
 
-Este documento tem como objetivo apresentar a tabela de requisitos elicitados para a aplicação. A fase de elicitação de requisitos foi simples, uma vez que todos os requisitos foram obtidos a partir do PDF de comando do desafio, que pode ser encontrado [aqui](/../desafio-cblab/docs/Desafio_DevFront_2024.pdf).
+Este documento tem como objetivo apresentar a tabela de requisitos elicitados para a aplicação. A fase de elicitação de requisitos foi simples, uma vez que todos os requisitos foram obtidos a partir do PDF de comando do desafio, que pode ser encontrado [aqui](/docs/Desafio_DevFront_2024.pdf).
 
 
 ### Lista de Requisitos Elicitados

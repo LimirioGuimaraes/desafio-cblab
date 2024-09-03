@@ -1,0 +1,46 @@
+.app-navbar1{
+    display: flex;
+    align-items: center;
+    height:  75px;
+    background-color: var(--primary-color); 
+}
+
+.toolbar-content {
+    width: 100%;
+    margin: 0 250px; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  
+.buttons-container {
+    display: flex;
+    align-items: center;
+  }
+
+.app-navbar1 .logo{
+    max-height: 70px;
+}
+
+button {
+    height: 45px;
+    border: 0;
+    border-radius: 25px;
+    font-family: var(--action-font);
+    font-weight: bold;
+    font-size: medium;
+    cursor: pointer;
+}
+
+
+.login-button {
+    width: 100px;
+    background-color: var(--secondary-color);
+}
+
+.register-button {
+    margin-left: 10px;
+    width: 120px;
+    background-color: var(--background-color);
+}

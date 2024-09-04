@@ -4,7 +4,7 @@
         <a routerLink="/home">
             <img class="logo" src="assets/logo.png" alt="logo">
           </a>
-        <a class="favorites" routerLink="/favorires"> Meus Favoritos </a>
+        <a class="favorites" routerLink="/favorites"> Meus Favoritos </a>
       </span>
 
       <div class="search-container">
@@ -17,9 +17,9 @@
       </div>
 
       <div class="hello-user">
-        <span>Olá user.</span>
+        <span>Olá {{ username }}.</span>
         <span>Bem vindo!</span>
-        <span routerLink="/login" class="out">Sair.</span>
+        <span (click)="logout()" class="out">Sair.</span>
       </div>
     </div>
   </mat-toolbar>

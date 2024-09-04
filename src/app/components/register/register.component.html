@@ -6,26 +6,27 @@
                 <h3 class="h3-title">Registre-se</h3>
             </div>
             <div class="body">
-                <form>
+                <form (ngSubmit)="register()">
                     <label>Usuário:</label>
                     <br>
-                    <input type="text"  placeholder="Seu_usuario...">
+                    <input type="text" [(ngModel)]="username" name="username" placeholder="Seu_usuario..." required>
                     <br>
                     <label>E-mail: </label>
                     <br>
-                    <input type="text"  placeholder="seu_email@gmail.com">
+                    <input type="email" [(ngModel)]="email" name="email" placeholder="seu_email@gmail.com" required>
                     <br>
                     <label>Senha:</label>
                     <br>
-                    <input type="password" placeholder="*******">
+                    <input type="password" [(ngModel)]="password" name="password" placeholder="*******" required>
                     <br>
                     <label>Confirme sua senha:</label>
                     <br>
-                    <input type="password" placeholder="*******">
+                    <input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" placeholder="*******" required> 
+                    
+                    <div class="buttons">
+                        <button class="confirm-button">Confirmar</button>
+                    </div>
                 </form>
-                <div class="buttons">
-                    <button class="confirm-button">Confirmar</button>
-                </div>
             </div>
         </div>
     </div>

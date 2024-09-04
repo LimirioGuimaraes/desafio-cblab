@@ -3,7 +3,7 @@
     <div class="container">
         <div class="col-4">
             <div class="title">
-                <h3 class="h3-title">Login</h3>
+                <h3 class="h3-title">Registre-se</h3>
             </div>
             <div class="body">
                 <form>
@@ -11,13 +11,20 @@
                     <br>
                     <input type="text"  placeholder="Seu_usuario...">
                     <br>
+                    <label>E-mail: </label>
+                    <br>
+                    <input type="text"  placeholder="seu_email@gmail.com">
+                    <br>
                     <label>Senha:</label>
+                    <br>
+                    <input type="password" placeholder="*******">
+                    <br>
+                    <label>Confirme sua senha:</label>
                     <br>
                     <input type="password" placeholder="*******">
                 </form>
                 <div class="buttons">
-                    <button class="login-button">Entrar</button>
-                    <button [routerLink]="'/register'"class="register-button"> Cadastre-se</button>
+                    <button class="confirm-button">Confirmar</button>
                 </div>
             </div>
         </div>

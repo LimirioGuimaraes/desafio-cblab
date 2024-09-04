@@ -5,13 +5,11 @@
     background-color: var(--primary-color);
     height: 50px;
     display: flex;
-
 }
 span{
     color: var(--secondary-color);
     font-size: 18px;
 }
-
 
 .git-logo {
     height: 40px; 

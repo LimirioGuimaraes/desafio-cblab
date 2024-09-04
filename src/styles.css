@@ -4,6 +4,7 @@
 
 :root {
     --primary-color: #6EA105;
+    --primary-color-opacity: rgba(110, 161, 5, 0.5);
     --secondary-color: #8B4513;
     --background-color: #FFFFF3; 
     --action-font: Lato;

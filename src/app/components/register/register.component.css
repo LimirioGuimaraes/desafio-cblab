@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 7%;
+    margin-top: 1%;
 }
 
 .title{
@@ -13,7 +13,7 @@
 .h3-title{
     font-size: 30px;
     font-family: var(--title-font);
-    font-weight: 600;
+    font-weight: 500;
 }
 
 label{
@@ -50,7 +50,7 @@ input::placeholder {
     justify-content: center;
 }
 
-button {
+.confirm-button {
     height: 55px;
     border: 0;
     border-radius: 15px;
@@ -59,16 +59,8 @@ button {
     font-weight: bold;
     font-size: medium;
     cursor: pointer;
-}
-
-
-.login-button {
-    width: 150px;
+    width: 300px;
     background-color: var(--secondary-color);
 }
 
-.register-button {
-    margin-left: 10px;
-    width: 150px;
-    background-color: var(--background-color);
-}
+

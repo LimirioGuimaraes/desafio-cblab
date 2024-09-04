@@ -1,0 +1,27 @@
+<mat-toolbar class="header mat-elevation-z4">
+    <div class="toolbar-content">
+      <span class="logo-container">
+        <a routerLink="/home">
+            <img class="logo" src="assets/logo.png" alt="logo">
+          </a>
+        <a class="favorites" routerLink="/favorires"> Meus Favoritos </a>
+      </span>
+
+      <div class="search-container">
+        <input 
+          type="text" 
+          placeholder="Pesquise por livros, autores, coleções..."
+          (input)="search($event)"
+        >
+        <img class="loupe" src="assets/loupe.png" alt="Lupa">
+      </div>
+
+      <div class="hello-user">
+        <span>Olá user.</span>
+        <span>Bem vindo!</span>
+        <span routerLink="/login" class="out">Sair.</span>
+      </div>
+    </div>
+  </mat-toolbar>
+  
+  

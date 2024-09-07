@@ -1,10 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Merriweather&family=Roboto&display=swap');
 
 
 :root {
     --primary-color: #6EA105;
     --primary-color-opacity: rgba(110, 161, 5, 0.5);
+    --primary-color-opacity-2: rgba(110, 161, 5, 0.8);
     --secondary-color: #8B4513;
     --background-color: #FFFFF3; 
     --action-font: Lato;

@@ -1,4 +1,44 @@
 <app-header></app-header>
 <div class="margin">
-    <h1 class="apresentation">Descubra, favorite e avalie seus livros preferidos em um só lugar.</h1>
+  <mat-list *ngIf="onScreen">
+    <mat-list-item *ngFor="let book of books$ | async; trackBy: trackByBookId" (click)="onBookClick(book)">
+      <img class="book-img" [src]="book.volumeInfo.imageLinks?.thumbnail" matListItemAvatar />
+      
+      <div class="book-info">
+        <!-- Título do livro e ícone de favoritar -->
+        <div class="book-title-container">
+          <h3 matListItemTitle>{{ book.volumeInfo.title }}</h3>
+          <mat-icon 
+            [class.favorite]="isFavorite(book)"
+            (click)="toggleFavorite(book)">
+            {{ isFavorite(book) ? 'favorite' : 'favorite_border' }}
+          </mat-icon>
+        </div>
+
+        <!-- Autor e estrelas -->
+        <div class="book-author-container">
+          <p matListItemLine>{{ book.volumeInfo.authors?.join(', ') || 'Autor desconhecido' }}</p>
+          <div class="rating-stars">
+            <mat-icon *ngFor="let star of [1, 2, 3, 4, 5]" 
+              (click)="rateBook(book.id, star)"
+              [ngClass]="{'rated': star <= getBookRate(book)}">
+              {{ star <= getBookRate(book) ? 'star' : 'star_border' }}
+            </mat-icon>
+          </div>
+                
+        </div>
+        
+        <p matListItemLine class="book-description">{{ book.volumeInfo.description || 'Desculpe, ainda não temos a descrição dessa obra :(' }}</p>
+      </div>
+    </mat-list-item>
+  </mat-list>
+</div>
+
+<div *ngIf="!onScreen" class="introduction-container">
+  <h1 class="apresentation">
+    Descubra, favorite e avalie seus livros favoritos em um só lugar! <br>
+    <span>Comece pesquisando um título na barra de busca.</span> <br>
+    <span>Se já é um usuário, visite seus Favoritos.</span> <br>
+    <span>Tenha um ótimo dia :)</span>
+  </h1>  
 </div>

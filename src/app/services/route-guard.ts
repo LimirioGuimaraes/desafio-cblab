@@ -5,7 +5,7 @@ import { CanActivate, Router } from '@angular/router';
   providedIn: 'root'
 })
 
-//Implementada proteção de rotas
+// implementada protecao de rotas
 
 export class RouteGuard implements CanActivate {
 
@@ -16,7 +16,6 @@ export class RouteGuard implements CanActivate {
     if (loggedInUser && loggedInUser.email) {
       return true;
     } else {
-      // Usuário não está logado, redirecionar para a página de login
       this.router.navigate(['/login']);
       return false;
     }

@@ -3,6 +3,7 @@
 
 Este repositório tem como objetivo versionar e hospedar a solução do Desafio Dev Full Stack (Estágio) do cblab. <br>
 Para ajudar na organização do processo de desenvolvimento da aplicação, um quadro kanban foi desenvolvido, ele pode ser visualizado [aqui](https://github.com/users/LimirioGuimaraes/projects/2).
+Alguns documentos gerados durante o desenvolvimento podem ser encontrados [aqui](https://github.com/LimirioGuimaraes/desafio-cblab/tree/main/docs).
 
 ## Como rodar o projeto
 

@@ -24,7 +24,13 @@ Para rodar o projeto localmente, é necessário ter o Node.js. Para efetuar a in
    sudo npm install -g @angular/cli
    ```
 
-4. Para rodar o projeto localmente, utilize o seguinte comando na pasta do repositório:
+4. Instale as dependências do Projeto.
+   
+   ```bash
+   npm install
+   ```
+   
+5. Para rodar o projeto localmente, utilize o seguinte comando na pasta do repositório:
 
    ```bash
    ng serve

@@ -83,4 +83,13 @@ Se você deseja contribuir para este projeto, siga os passos abaixo:
    ```
 
 ### 5. Crie um Pull Request
- 
+
+## Principais Dependências 
+
+- **Angular e Angular Material**: Inclui bibliotecas essenciais para desenvolvimento com Angular e Material Design.
+- **NgRx**: Biblioteca para gerenciamento de estado.
+- **Angular CLI**:
+
+
+
+

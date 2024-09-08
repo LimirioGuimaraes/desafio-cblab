@@ -89,7 +89,7 @@ Se você deseja contribuir para este projeto, siga os passos abaixo:
 
 - **Angular e Angular Material**: Inclui bibliotecas essenciais para desenvolvimento com Angular e Material Design.
 - **NgRx**: Biblioteca para gerenciamento de estado.
-- **Angular CLI**:
+- **Angular CLI**.
 
 A aplicação foi desenvolvida utilizando a IDE VSCode.
 

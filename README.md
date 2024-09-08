@@ -90,6 +90,7 @@ Se você deseja contribuir para este projeto, siga os passos abaixo:
 - **NgRx**: Biblioteca para gerenciamento de estado.
 - **Angular CLI**:
 
+A aplicação foi desenvolvida utilizando a IDE VSCode.
 
 
 

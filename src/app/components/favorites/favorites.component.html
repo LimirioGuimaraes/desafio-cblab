@@ -1,4 +1,46 @@
 <app-header></app-header>
 <div class="margin">
-    <p>Favorite works!</p>
+  <mat-form-field class="filter-container">
+    <mat-label>Filtrar por tag</mat-label>
+    <input matInput [(ngModel)]="filterTag" (ngModelChange)="onFilterChange()" placeholder="Digite a tag para filtrar">
+  </mat-form-field>
+  
+  <mat-list *ngIf="filteredBooks$ | async as favoriteBooks; else noFavorites">
+    <mat-list-item *ngFor="let book of favoriteBooks; trackBy: trackByBookId">
+      <img class="book-img" [src]="book.volumeInfo.imageLinks?.thumbnail" matListItemAvatar (click)="onBookClick(book)"/>
+      
+      <div class="book-info">
+        <!-- Título do livro e ícone de favoritar -->
+        <div class="book-title-container">
+          <h3 matListItemTitle (click)="onBookClick(book)">{{ book.volumeInfo.title }}</h3>
+          <mat-icon 
+            [class.favorite]="isFavorite(book)"
+            (click)="toggleFavorite(book)">
+            {{ isFavorite(book) ? 'favorite' : 'favorite_border' }}
+          </mat-icon>
+        </div>
+
+        <!-- Autor e estrelas -->
+        <div class="book-author-container">
+          <p matListItemLine>{{ book.volumeInfo.authors?.join(', ') || 'Autor desconhecido' }}</p>
+          <div class="rating-stars">
+            <mat-icon *ngFor="let star of [1, 2, 3, 4, 5]" 
+              (click)="rateBook(book.id, star)"
+              [ngClass]="{'rated': star <= getBookRate(book)}">
+              {{ star <= getBookRate(book) ? 'star' : 'star_border' }}
+          </mat-icon>  
+          </div>
+        </div>
+        <p matListItemLine class="book-description">{{ book.volumeInfo.description || 'Desculpe, ainda não temos a descrição dessa obra :(' }}</p>
+      </div>
+    </mat-list-item>
+  </mat-list>
+
+  <ng-template #noFavorites>
+    <div class="introduction-container">
+      <h1 class="apresentation">
+        Não há livros favoritos no momento.
+      </h1>
+    </div>
+  </ng-template>
 </div>

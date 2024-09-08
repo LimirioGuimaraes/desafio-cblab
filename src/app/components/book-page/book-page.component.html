@@ -1,0 +1,77 @@
+<app-header></app-header>
+<div class="margin">
+  <div *ngIf="book$ | async as book; else loading">
+    <div class="book-details">
+      <div class="book-info">
+        <h1>{{ book.volumeInfo.title }}</h1>
+        <h2>{{ book.volumeInfo.subtitle }}</h2>
+
+        <p><strong>Autorado Por:</strong> {{ book.volumeInfo.authors.join(', ') }}</p>
+        <p><strong>Data de Publicação:</strong> {{ book.volumeInfo.publishedDate }}</p>
+        <p><strong>Publicado Por:</strong> {{ book.volumeInfo.publisher }}</p>
+        <p><strong>Páginas:</strong> {{ book.volumeInfo.pageCount }}</p>
+        <p><strong>Categorias:</strong> {{ book.volumeInfo.categories.join(', ') }}</p>
+        <p><strong>Idioma:</strong> {{ book.volumeInfo.language }}</p>
+        <p><strong>Descrição:</strong> <span [innerHTML]="book.volumeInfo.description"></span></p>
+
+        <div class="book-comment">
+          <div class="comment-header">
+            <h3>Nota do Leitor:</h3>
+            <button (click)="editComment()" mat-icon-button>
+              <mat-icon>edit</mat-icon>
+            </button>
+          </div>
+        
+          <div *ngIf="!isEditing">
+            <p>{{ savedComment || 'Nenhum comentário salvo.' }}</p>
+          </div>
+          
+          <div *ngIf="isEditing">
+            <textarea [(ngModel)]="userComment" placeholder="Escreva seu comentário aqui..."></textarea>
+             <div class="editing-container">
+              <button (click)="saveComment()">Salvar Comentário</button>
+              <button (click)="cancelEdit()">Cancelar</button>
+            </div>
+          </div>
+        </div>
+        <div class="book-tags">
+          <h3>Tags:</h3>
+          <div class="tag-input">
+            <input [(ngModel)]="newTag" placeholder="Adicione uma nova tag" (keyup.enter)="addTag()">
+            <button (click)="addTag()">Adicionar</button>
+          </div>
+          <div class="tags-list">
+            <span *ngFor="let tag of tags; let i = index" class="tag-item">
+              {{ tag }}
+              <button (click)="removeTag(i)" class="remove-btn">&times;</button>
+            </span>
+          </div>
+        </div>        
+      </div>
+
+      <div class="book-image">
+        <div class="rating-stars">
+          <mat-icon *ngFor="let star of [1, 2, 3, 4, 5]" 
+            (click)="rateBook(book.id, star)"
+            [ngClass]="{'rated': star <= getBookRate(book)}">
+            {{ star <= getBookRate(book) ? 'star' : 'star_border' }}
+          </mat-icon>                    
+        </div>
+
+        <img [src]="book.volumeInfo.imageLinks?.thumbnail" alt="Book Cover">
+
+        <div class="book-title-container">  
+          <mat-icon 
+            [class.favorite]="isFavorite(book)"
+            (click)="toggleFavorite(book)">
+            {{ isFavorite(book) ? 'favorite' : 'favorite_border' }}
+          </mat-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <p>Carregando detalhes do livro...</p>
+  </ng-template>
+</div>

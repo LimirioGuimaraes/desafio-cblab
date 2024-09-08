@@ -30,7 +30,11 @@ export class RegisterComponent {
       return;
     }
     if (this.password !== this.confirmPassword) {
-      alert('As senhas nãsãoo iguais');
+      alert('As senhas não são iguais');
+      return;
+    }
+    if (!this.username || !this.email || !this.password || !this.confirmPassword) {
+      alert('Por favor, preencha todos os campos.');
       return;
     }
 

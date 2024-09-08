@@ -1,21 +1,35 @@
 <mat-toolbar class="header mat-elevation-z4">
     <div class="toolbar-content">
-      <span class="logo-container">
+      <span (click)="logoClick()" class="logo-container">
         <a routerLink="/home">
             <img class="logo" src="assets/logo.png" alt="logo">
           </a>
         <a class="favorites" routerLink="/favorites"> Meus Favoritos </a>
       </span>
 
-      <div class="search-container">
-        <input 
-          type="text" 
-          placeholder="Pesquise por livros, autores, coleções..."
-          (input)="search($event)"
-        >
-        <img class="loupe" src="assets/loupe.png" alt="Lupa">
-      </div>
+      <div class="search-wrapper">
+        <div class="search-container">
+          <input 
+            type="text" 
+            placeholder="Pesquise por livros, autores, coleções..."
+            (input)="onSearch($event)"
+            autofocus
+          >
+          <img class="loupe" src="assets/loupe.png" alt="Lupa">
+        </div>
 
+         <mat-list *ngIf="onScreen && isFavorites()">
+          <mat-list-item *ngFor="let book of (books$ | async)?.slice(0, 5); trackBy: trackByBookId" (click)="onBookClick(book)">
+            <img class="book-img" [src]="book.volumeInfo.imageLinks?.thumbnail" matListItemAvatar />
+            <h3 matListItemTitle>{{ book.volumeInfo.title }}</h3>
+            <p matListItemLine>{{ book.volumeInfo.authors?.join(', ') || 'Autor desconhecido' }}</p>
+          </mat-list-item>
+          <mat-list-item class="show-more" (click)="loadMoreBooks()">
+            <h3 matListItemTitle>Mostrar mais resultados</h3>
+          </mat-list-item>
+        </mat-list>
+        
+      </div>
       <div class="hello-user">
         <span>Olá {{ username }}.</span>
         <span>Bem vindo!</span>
@@ -24,4 +38,4 @@
     </div>
   </mat-toolbar>
   
-  
+ 

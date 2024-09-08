@@ -3,6 +3,7 @@
     align-items: center;
     height:  75px;
     background-color: var(--primary-color); 
+    opacity: 1;
 }
 .header .logo{
     max-height: 70px;
@@ -54,7 +55,7 @@
   }
 
 
-/*Estilização barra de pesquisa*/
+/*Estilização barra de pesquisa*/ 
 
 .search-container {
     display: flex;
@@ -63,9 +64,8 @@
     padding: 5px 15px;
     background-color: var(--background-color);
     width: 100%;
-    max-width: 500px;
+    max-width: var(--search-list-width);;
     position: relative;
-    margin-right: 30px;
     height: 30px;
   }
   
@@ -85,4 +85,53 @@
     cursor: pointer;
   }
   
-  
+  .search-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin-right: 150px;
+  }
+
+  mat-list{
+    padding: 0%;
+    padding-top: 0%;
+    position: absolute;
+    width: calc(100% + 30px);; 
+    background-color: var(--background-color);
+    border-radius: 15px;
+    z-index: 10;
+  }
+  mat-list-item{
+    margin: none;
+    cursor: pointer;
+    border-bottom: 1px solid black;
+  }
+
+  mat-list-item h3{
+    font-size: 17px;
+    font-family: var(--action-font);
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  mat-list-item p {
+    color: var(--secondary-color);
+  }
+
+  mat-list-item img.book-img {
+    height: 50px;
+    width: auto;
+    border-radius: 0;
+    cursor: pointer;
+  }
+
+  .show-more h3{
+    font-family: var(--action-font);
+    text-align: center;
+  }
+  .show-more{
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5ps;
+    border-bottom-right-radius: 5px;
+  }

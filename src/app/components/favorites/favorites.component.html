@@ -1,21 +1,18 @@
 <app-header></app-header>
-
 <div class="margin">
-  <!-- Filtro por tags -->
-  <mat-form-field appearance="outline">
+  <mat-form-field class="filter-container">
     <mat-label>Filtrar por tag</mat-label>
     <input matInput [(ngModel)]="filterTag" (ngModelChange)="onFilterChange()" placeholder="Digite a tag para filtrar">
   </mat-form-field>
   
-
   <mat-list *ngIf="filteredBooks$ | async as favoriteBooks; else noFavorites">
     <mat-list-item *ngFor="let book of favoriteBooks; trackBy: trackByBookId">
-      <img class="book-img" [src]="book.volumeInfo.imageLinks?.thumbnail" matListItemAvatar />
+      <img class="book-img" [src]="book.volumeInfo.imageLinks?.thumbnail" matListItemAvatar (click)="onBookClick(book)"/>
       
       <div class="book-info">
         <!-- Título do livro e ícone de favoritar -->
         <div class="book-title-container">
-          <h3 matListItemTitle>{{ book.volumeInfo.title }}</h3>
+          <h3 matListItemTitle (click)="onBookClick(book)">{{ book.volumeInfo.title }}</h3>
           <mat-icon 
             [class.favorite]="isFavorite(book)"
             (click)="toggleFavorite(book)">
@@ -34,8 +31,6 @@
           </mat-icon>  
           </div>
         </div>
-
-        <!-- Descrição -->
         <p matListItemLine class="book-description">{{ book.volumeInfo.description || 'Desculpe, ainda não temos a descrição dessa obra :(' }}</p>
       </div>
     </mat-list-item>

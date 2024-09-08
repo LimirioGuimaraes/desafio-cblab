@@ -6,7 +6,6 @@ export class BookModel {
   public tag: string = '';
   volumeInfo: any;
 
-
   constructor(public username: string) {}
 
   public getUserEmail(): string {

@@ -54,12 +54,10 @@ export class BookPageComponent implements OnInit {
     });
   }
 
-
-
   // funcoes de comentarios
   saveComment(): void {
-    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
-    const username = loggedInUser.username || 'guest';
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '');
+    const username = loggedInUser.username;
 
     if (this.bookId && username) {
       const comments = JSON.parse(localStorage.getItem('bookComments') || '{}');
@@ -72,7 +70,7 @@ export class BookPageComponent implements OnInit {
 
   loadSavedComment(): void {
     const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
-    const username = loggedInUser.username || 'guest';
+    const username = loggedInUser.username;
 
     if (this.bookId && username) {
       const comments = JSON.parse(localStorage.getItem('bookComments') || '{}');
@@ -115,35 +113,47 @@ export class BookPageComponent implements OnInit {
     }
 
   //funcoes de get e set para o book rate 
-    getBookRate(book: any) {
-      const rates = this.bookModel.getRates(this.userEmail);
-      return rates[book.id] || 0;
-    }
-    
-    rateBook(bookId: string, rating: number): void {
-      const rates = this.bookModel.getRates(this.userEmail);
-      rates[bookId] = rating;
-      this.bookModel.setRates(this.userEmail, rates);
-    }
-
-  // tags
-  addTag(): void {
-    if (this.newTag.trim()) {
-      const trimmedTag = this.newTag.trim();
-      if (!this.tags.includes(trimmedTag)) {
-        this.tags.push(trimmedTag);
-        this.saveTags(this.bookId, this.tags);
-        this.newTag = ''; 
-      }
-    }
-  }
-
-  saveTags(bookId: string, tags: string[]): void {
-    localStorage.setItem(`tags_${bookId}`, JSON.stringify(tags));
+  getBookRate(book: any) {
+    const rates = this.bookModel.getRates(this.userEmail);
+    return rates[book.id] || 0;
   }
   
-  loadTags(bookId: string): string[] {
-    const tags = localStorage.getItem(`tags_${bookId}`);
-    return tags ? JSON.parse(tags) : [];
+  rateBook(bookId: string, rating: number): void {
+    const rates = this.bookModel.getRates(this.userEmail);
+    rates[bookId] = rating;
+    this.bookModel.setRates(this.userEmail, rates);
   }
+
+// tags
+addTag(): void {
+  if (this.newTag.trim()) {
+    const trimmedTag = this.newTag.trim();
+    if (!this.tags.includes(trimmedTag)) {
+      this.tags.push(trimmedTag);
+      this.saveTags(this.bookId, this.tags);
+      this.newTag = '';     
+    }
+  }
+}
+
+removeTag(index: number): void {
+  this.tags.splice(index, 1); 
+  this.saveTags(this.bookId, this.tags); 
+}
+
+saveTags(bookId: string, tags: string[]): void {
+  const userEmail = this.userEmail; 
+  const userTags = JSON.parse(localStorage.getItem(`tags_${userEmail}`) || '{}');
+  userTags[bookId] = tags;
+  localStorage.setItem(`tags_${userEmail}`, JSON.stringify(userTags));
+  
+}
+
+loadTags(bookId: string): string[] {
+  const userEmail = this.userEmail; 
+  const userTags = JSON.parse(localStorage.getItem(`tags_${userEmail}`) || '{}');
+  return userTags[bookId] || [];
+
+}
+
 }

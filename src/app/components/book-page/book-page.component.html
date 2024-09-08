@@ -41,9 +41,12 @@
             <button (click)="addTag()">Adicionar</button>
           </div>
           <div class="tags-list">
-            <span *ngFor="let tag of tags">{{ tag }}<br></span>
+            <span *ngFor="let tag of tags; let i = index" class="tag-item">
+              {{ tag }}
+              <button (click)="removeTag(i)" class="remove-btn">&times;</button>
+            </span>
           </div>
-        </div>
+        </div>        
       </div>
 
       <div class="book-image">
@@ -57,7 +60,7 @@
 
         <img [src]="book.volumeInfo.imageLinks?.thumbnail" alt="Book Cover">
 
-        <div class="book-title-container">
+        <div class="book-title-container">  
           <mat-icon 
             [class.favorite]="isFavorite(book)"
             (click)="toggleFavorite(book)">

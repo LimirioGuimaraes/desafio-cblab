@@ -1,13 +1,13 @@
 <app-header></app-header>
 <div class="margin">
   <mat-list *ngIf="onScreen">
-    <mat-list-item *ngFor="let book of books$ | async; trackBy: trackByBookId" (click)="onBookClick(book)">
-      <img class="book-img" [src]="book.volumeInfo.imageLinks?.thumbnail" matListItemAvatar />
+    <mat-list-item *ngFor="let book of books$ | async; trackBy: trackByBookId">
+      <img class="book-img" [src]="book.volumeInfo.imageLinks?.thumbnail" matListItemAvatar (click)="onBookClick(book)"/>
       
       <div class="book-info">
         <!-- Título do livro e ícone de favoritar -->
         <div class="book-title-container">
-          <h3 matListItemTitle>{{ book.volumeInfo.title }}</h3>
+          <h3 matListItemTitle (click)="onBookClick(book)">{{ book.volumeInfo.title }}</h3>
           <mat-icon 
             [class.favorite]="isFavorite(book)"
             (click)="toggleFavorite(book)">

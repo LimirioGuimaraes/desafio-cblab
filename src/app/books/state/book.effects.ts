@@ -42,9 +42,7 @@ export class BookEffects {
     this.actions$.pipe(
       ofType(searchBooksById),
       debounceTime(3000),
-      distinctUntilChanged((prev, curr) => prev.favoriteBooks === curr.favoriteBooks),
-      tap(action => console.log('AAA quero meus livros:', action.favoriteBooks)), // apagar dps
-      
+      distinctUntilChanged((prev, curr) => prev.favoriteBooks === curr.favoriteBooks),      
       mergeMap(action =>
         this.booksService.searchBooksById(action.favoriteBooks).pipe(
           map(favoriteBooks => searchBooksByIdSuccess({ favoriteBooks })),

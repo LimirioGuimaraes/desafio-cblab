@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { selectBooksById } from '../../books/state/book.selectors';
 import { CommonModule } from '@angular/common';
@@ -15,6 +15,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { map } from 'rxjs/operators';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { SearchService } from '../../services/search-service';
+
 
 @Component({
   selector: 'app-favorites',
@@ -32,7 +34,7 @@ export class FavoritesComponent implements OnInit {
   filterTag: string = '';
   private bookModel: BookModel;
 
-  constructor(private store: Store) {
+constructor(private store: Store, private searchService: SearchService, private router: Router) {
     this.bookModel = new BookModel('');
     this.favoriteBooks$ = this.store.select(selectBooksById);
   }
@@ -78,18 +80,19 @@ export class FavoritesComponent implements OnInit {
 
   applyTagFilter(book: BookModel): boolean {
     if (!this.filterTag) {
-      return true;
+      return true; 
     }
-    const tags: string[] = book.volumeInfo?.tags || [];
+    const userEmail = this.userEmail;
+    const userTags = JSON.parse(localStorage.getItem(`tags_${userEmail}`) || '{}');
+    const tags: string[] = userTags[book.id] || [];
     return tags.some(tag => tag.toLowerCase().includes(this.filterTag.toLowerCase()));
   }
 
   onFilterChange(): void {
-    console.log('Filtering books with tag:', this.filterTag);
     this.filteredBooks$ = this.favoriteBooks$.pipe(
       map(books => books.filter(b => this.applyTagFilter(b)))
     );
-  }
+  } 
 
   private getFavorites(): string[] {
     const userFavorites = localStorage.getItem(`favorites_${this.userEmail}`);
@@ -99,13 +102,9 @@ export class FavoritesComponent implements OnInit {
   private saveFavorites(favorites: string[]): void {
     localStorage.setItem(`favorites_${this.userEmail}`, JSON.stringify(favorites));
   }
-
-  private getBooksFromLocalStorage(): any[] {
-    const userBooks = localStorage.getItem(`books_${this.userEmail}`);
-    return userBooks ? JSON.parse(userBooks) : [];
-  }
-
-  private saveBooksToLocalStorage(books: any[]): void {
-    localStorage.setItem(`books_${this.userEmail}`, JSON.stringify(books));
+  
+  onBookClick(book: any): void {
+    this.searchService.updateSearchTerm('');
+    this.router.navigate(['/book', book.id]);
   }
 }

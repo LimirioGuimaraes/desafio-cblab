@@ -38,19 +38,13 @@ export class BooksService {
     searchBooks(query: string): Observable<Book[]> {
       const url = `${this.apiUrl}?q=${query}&maxResults=20`;
       return this.http.get<BooksApiResponse>(url).pipe(
-        debounceTime(2000),
-        tap(response => console.log('Resposta da API errada:', response)), 
-        map(response => response.items || []) 
-      );
+        debounceTime(2000), map(response => response.items || []));
     }
 
     // busca por id unico
     searchBook(bookId: string): Observable<Book> {
       const url = `${this.apiUrl}/${bookId}`;
-      return this.http.get<Book>(url).pipe(
-        tap(response => console.log('Resposta da API só um livroo:', response)), 
-        map(response => response) 
-      );
+      return this.http.get<Book>(url).pipe(map(response => response) );
     }
 
     // busca por array de id's
@@ -58,7 +52,6 @@ export class BooksService {
       const requests = ids.map((id) => {
         const url = `${this.apiUrl}/${id}`;
         return this.http.get<Book>(url).pipe(
-          tap((book) => console.log(`Livro recebido com ID ${id}:`, book)),
           catchError((error: any) => {
             return of(null);
           })

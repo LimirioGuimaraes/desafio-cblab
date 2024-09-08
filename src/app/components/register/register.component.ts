@@ -33,6 +33,10 @@ export class RegisterComponent {
       alert('As senhas não são iguais');
       return;
     }
+    if (!this.username || !this.email || !this.password || !this.confirmPassword) {
+      alert('Por favor, preencha todos os campos.');
+      return;
+    }
 
     users.push({ username: this.username, email: this.email, password: this.password });
     localStorage.setItem('users', JSON.stringify(users));

@@ -1,4 +1,3 @@
-
   mat-list {
     padding: 0;
     padding-bottom: 50px;
@@ -59,3 +58,15 @@
     margin-top: 10px;
   }
   
+  .filter-container{
+    padding-top: 15px;
+  }
+
+.filter-container mat-label {
+  color: var(--primary-color); 
+}
+
+.filter-container input::placeholder {
+  color: #000000; 
+}
+
